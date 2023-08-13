@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Counter_Timer</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="icon"
+      href="https://cdn-icons-png.flaticon.com/128/992/992700.png"
+      type="image/x-icon"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <div class="counter">
+        <h1>0</h1>
+        <button class="plus">+</button>
+        <button class="minus">-</button>
+        <button class="random">Random</button>
+        <button class="reset">Reset</button>
+      </div>
+
+      <hr>
+      
+      <div class="timer">
+        <h2>00:00</h2>
+        <button data-type="start" class="start">Start</button>
+        <button data-type="stop" disabled class="stop">Stop</button>
+        <button data-type="reset" disabled class="resetTimer">Reset</button>
+        <button data-type="continue" class="continue">Сontinue</button>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
