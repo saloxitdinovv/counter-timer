@@ -33,8 +33,8 @@ let screen = timer.querySelector("h2");
 let btns = timer.querySelectorAll("button");
 let continueBtn = timer.querySelector(".continue");
 let interval;
-let seconds = 0;
 let minutes = 0;
+let seconds = 0;
 let milseconds = 0;
 
 let startBtn = document.querySelector(".start");
@@ -62,6 +62,9 @@ btns.forEach((btn) => {
 });
 
 function start() {
+  milseconds = 0
+  seconds = 0 
+  minutes = 0
   clearInterval(interval);
   interval = setInterval(() => {
     milseconds++;
@@ -81,12 +84,12 @@ function start() {
   }, 10);
   stopBtn.removeAttribute("disabled");
   resetBtn.removeAttribute("disabled");
+  continueBtn.style.display = "none";
 }
 
 function stopTimer() {
   clearInterval(interval);
   continueBtn.style.display = "block";
-  startBtn.setAttribute("disabled", true);
 }
 
 function continueTimer() {
