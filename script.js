@@ -33,13 +33,13 @@ let screen = timer.querySelector("h2");
 let btns = timer.querySelectorAll("button");
 let continueBtn = timer.querySelector(".continue");
 let interval;
-let time = 0;
 let seconds = 0;
 let minutes = 0;
+let milseconds = 0;
 
-let startBtn = document.querySelector('.start')
-let stopBtn = document.querySelector('.stop')
-let resetBtn = document.querySelector('.resetTimer')
+let startBtn = document.querySelector(".start");
+let stopBtn = document.querySelector(".stop");
+let resetBtn = document.querySelector(".resetTimer");
 btns.forEach((btn) => {
   btn.onclick = () => {
     let types = btn.getAttribute("data-type");
@@ -64,36 +64,45 @@ btns.forEach((btn) => {
 function start() {
   clearInterval(interval);
   interval = setInterval(() => {
-    seconds++;
-    if (seconds === 60) {
+    milseconds++;
+    if (milseconds === 100) {
+      milseconds = 0;
+      seconds++;
+    } else if (seconds === 60) {
       seconds = 0;
       minutes++;
     }
+    // screen.innerText = `${minutes < 10 ? `0${minutes}` : minutes}:${
+    //   seconds < 10 ? `0${seconds}` : seconds
+    // }``${milseconds < 10 ? `0${milseconds}` : milseconds}; `
     screen.innerText = `${minutes < 10 ? `0${minutes}` : minutes}:${
       seconds < 10 ? `0${seconds}` : seconds
-    }`;
-  }, 1000);
-  stopBtn.removeAttribute("disabled")
-  resetBtn.removeAttribute("disabled")
+    }:${milseconds < 10 ? `0${milseconds}` : milseconds} `;
+  }, 10);
+  stopBtn.removeAttribute("disabled");
+  resetBtn.removeAttribute("disabled");
 }
 
 function stopTimer() {
   clearInterval(interval);
   continueBtn.style.display = "block";
-  startBtn.setAttribute("disabled", true)
+  startBtn.setAttribute("disabled", true);
 }
 
 function continueTimer() {
   interval = setInterval(() => {
-    seconds++;
-    if (seconds === 60) {
+    milseconds++;
+    if (milseconds === 100) {
+      milseconds = 0;
+      seconds++;
+    } else if (seconds === 60) {
       seconds = 0;
       minutes++;
     }
     screen.innerText = `${minutes < 10 ? `0${minutes}` : minutes}:${
       seconds < 10 ? `0${seconds}` : seconds
-    }`;
-  }, 1000);
+    }:${milseconds < 10 ? `0${milseconds}` : milseconds} `;
+  }, 10);
   continueBtn.style.display = "none";
 }
 
@@ -102,8 +111,8 @@ function resetTimer() {
   clearInterval(interval);
   seconds = 0;
   minutes = 0;
-  screen.innerText = "00:00";
-  startBtn.removeAttribute("disabled")
-  stopBtn.setAttribute("disabled", true)
-  resetBtn.setAttribute("disabled", true)
+  screen.innerText = "00:00:00";
+  startBtn.removeAttribute("disabled");
+  stopBtn.setAttribute("disabled", true);
+  resetBtn.setAttribute("disabled", true);
 }
